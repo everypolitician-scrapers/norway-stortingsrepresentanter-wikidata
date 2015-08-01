@@ -27,7 +27,7 @@ require 'wikidata/fetcher'
 
 @pages.map { |c| WikiData::Category.new(c, 'no').wikidata_ids }.flatten.uniq.each_with_index do |id, i|
   puts i if (i % 100).zero?
-  data = WikiData::Fetcher.new(id: id).data('no') or next
+  data = WikiData::Fetcher.new(id: id).data('nn') or next
   # puts "%s %s" % [data[:id], data[:name]]
   ScraperWiki.save_sqlite([:id], data)
 end
