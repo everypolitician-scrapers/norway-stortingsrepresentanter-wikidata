@@ -3,6 +3,7 @@
 
 require 'scraperwiki'
 require 'wikidata/fetcher'
+require 'rest-client'
 
 @pages = [
   'Kategori:Stortingsrepresentanter 2013–2017',
@@ -31,3 +32,6 @@ require 'wikidata/fetcher'
   # puts "%s %s" % [data[:id], data[:name]]
   ScraperWiki.save_sqlite([:id], data)
 end
+
+warn RestClient.post ENV['MORPH_REBUILDER_URL'], {} if ENV['MORPH_REBUILDER_URL']
+
