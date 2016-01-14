@@ -1,9 +1,8 @@
 #!/bin/env ruby
 # encoding: utf-8
 
-require 'scraperwiki'
 require 'wikidata/fetcher'
-require 'rest-client'
+require 'pry'
 
 @pages = [
   'Kategori:Stortingsrepresentanter 2013–2017',
@@ -26,12 +25,7 @@ require 'rest-client'
   'Kategori:Stortingsrepresentanter 1945–1949',
 ]
 
-@pages.map { |c| WikiData::Category.new(c, 'no').wikidata_ids }.flatten.uniq.each_with_index do |id, i|
-  puts i if (i % 100).zero?
-  data = WikiData::Fetcher.new(id: id).data('no', 'nb', 'nn') or next
-  # puts "%s %s" % [data[:id], data[:name]]
-  ScraperWiki.save_sqlite([:id], data)
-end
-
-warn RestClient.post ENV['MORPH_REBUILDER_URL'], {} if ENV['MORPH_REBUILDER_URL']
+names = @pages.map { |c| WikiData::Category.new(c, 'no').member_titles }.flatten.uniq
+EveryPolitician::Wikidata.scrape_wikidata(names: { no: names })
+warn EveryPolitician::Wikidata.notify_rebuilder
 
