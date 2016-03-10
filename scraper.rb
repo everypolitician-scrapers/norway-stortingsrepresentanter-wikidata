@@ -25,7 +25,8 @@ require 'pry'
   'Kategori:Stortingsrepresentanter 1945–1949',
 ]
 
-names = @pages.map { |c| WikiData::Category.new(c, 'no').member_titles }.flatten.uniq
-EveryPolitician::Wikidata.scrape_wikidata(names: { no: names })
-warn EveryPolitician::Wikidata.notify_rebuilder
+no_names = @pages.map { |c| WikiData::Category.new(c, 'no').member_titles }.flatten.uniq
+en_names = WikiData::Category.new('Category:Members of the Parliament of Norway', 'en').member_titles
+
+EveryPolitician::Wikidata.scrape_wikidata(names: { no: no_names, en: en_names })
 
