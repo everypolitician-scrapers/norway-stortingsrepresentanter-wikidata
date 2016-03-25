@@ -2,7 +2,6 @@
 # encoding: utf-8
 
 require 'wikidata/fetcher'
-require 'pry'
 
 @pages = [
   'Kategori:Stortingsrepresentanter 2013–2017',
@@ -28,5 +27,5 @@ require 'pry'
 no_names = @pages.map { |c| WikiData::Category.new(c, 'no').member_titles }.flatten.uniq
 en_names = WikiData::Category.new('Category:Members of the Parliament of Norway', 'en').member_titles
 
-EveryPolitician::Wikidata.scrape_wikidata(names: { no: no_names, en: en_names })
+EveryPolitician::Wikidata.scrape_wikidata(names: { no: no_names, en: en_names }, batch_size: 50, output: true)
 
