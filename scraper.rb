@@ -24,7 +24,7 @@ NO_PAGES = [
   'Kategori:Stortingsrepresentanter 1945–1949',
 ]
 
-IDs = %w(Q28481590 Q26848931)
+IDs = %w(Q28481590 Q26848931 Q26848931)
 
 no_names = NO_PAGES.map { |c| WikiData::Category.new(c, 'no').member_titles }.flatten.uniq
 en_names = WikiData::Category.new('Category:Members of the Storting', 'en').member_titles
