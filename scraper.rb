@@ -29,4 +29,4 @@ IDs = %w(Q28481590 Q26848931 Q26848931)
 no_names = NO_PAGES.map { |c| WikiData::Category.new(c, 'no').member_titles }.flatten.uniq
 en_names = WikiData::Category.new('Category:Members of the Storting', 'en').member_titles
 
-EveryPolitician::Wikidata.scrape_wikidata(ids: IDs, names: { no: no_names, en: en_names })
+EveryPolitician::Wikidata.scrape_wikidata(ids: IDs, names: { no: no_names, en: en_names }, batch_size: 250)
