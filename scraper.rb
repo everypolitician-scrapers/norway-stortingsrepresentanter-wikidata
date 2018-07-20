@@ -4,6 +4,7 @@
 require 'wikidata/fetcher'
 
 NO_PAGES = [
+  'Kategori:Stortingsrepresentanter 2017–2021',
   'Kategori:Stortingsrepresentanter 2013–2017',
   'Kategori:Stortingsrepresentanter 2009–2013',
   'Kategori:Stortingsrepresentanter 2005–2009',
